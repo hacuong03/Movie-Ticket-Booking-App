@@ -1,6 +1,6 @@
 {
-    "name": "untitled3",
-    "short_name": "untitled3",
+    "name": "movie_ticket",
+    "short_name": "movie_ticket",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,22 +1,21 @@
 {
   "project_info": {
-    "project_number": "380443144495",
-    "firebase_url": "https://fir-mobile-9ae3a-default-rtdb.firebaseio.com",
-    "project_id": "fir-mobile-9ae3a",
-    "storage_bucket": "fir-mobile-9ae3a.firebasestorage.app"
+    "project_number": "34982994522",
+    "project_id": "movieticket-43d51",
+    "storage_bucket": "movieticket-43d51.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:380443144495:android:8134eaabb4666e82eeb1da",
+        "mobilesdk_app_id": "1:34982994522:android:fce56d20c082e12c69ae63",
         "android_client_info": {
-          "package_name": "com.example.flutter_ui_design"
+          "package_name": "com.example.movie_ticket"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCs0T5nOOFCMuwyaJYs2xa0GumMKxh1TlQ"
+          "current_key": "AIzaSyCL48YrM46naAF-jYqeoOKn1FM7rPnvVlU"
         }
       ],
       "services": {

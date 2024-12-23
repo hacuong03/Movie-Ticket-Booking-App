@@ -1,8 +1,8 @@
-name: flutter_ui_design
+name: movie_ticket
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.4.4 <4.0.0"
+  sdk: '>=3.3.3 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,28 +30,34 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
+  get: ^4.6.6
+  dio: ^5.7.0
+  flutter_native_splash: ^2.3.7
+  cached_network_image: ^3.3.1
+  webview_flutter: ^4.5.0
+  google_fonts: 6.1.0
+  carousel_slider: ^5.0.0
+  loader_overlay: 3.0.2
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.32.0
+  firebase_storage: ^11.6.0
+  flutter_screenutil: ^5.9.3
+  uuid: ^4.2.2
+  internet_connection_checker: any
+  cloud_firestore: ^4.14.0
+  flutter_spinkit: ^5.2.1
+  intl: ^0.18.1
+  readmore: ^2.0.0
+  video_player: ^2.4.5
+  youtube_player_flutter: ^8.0.0
+  qr_flutter: ^4.0.0
+  pie_chart: ^5.0.0
+  fl_chart: ^0.36.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-  intl: ^0.19.0
-  video_player: ^2.9.1
-  smooth_page_indicator: ^1.2.0+3
-  carousel_slider: ^5.0.0
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-  readmore: ^3.0.0
-  flutter_rating_bar: ^4.0.1
-  iconsax: ^0.0.8
-  flutter_staggered_grid_view: ^0.7.0
-  flutter_slidable: ^3.1.1
-  percent_indicator: ^4.2.3
-  http: ^1.2.2
-  stability_image_generation: ^0.0.4
-  syncfusion_flutter_charts: ^27.1.55
-  swipeable_button_view: ^0.0.2
-  google_fonts: ^6.2.1
-  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -63,14 +69,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
-  hive_generator: ^2.0.1
-  build_runner: ^2.4.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -78,7 +83,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/cinema/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
