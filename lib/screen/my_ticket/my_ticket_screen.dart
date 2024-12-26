@@ -23,21 +23,19 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
     super.initState();
     _controller = Get.put(MyTicketController());
     _controller.getTicketsByUserId();
+
+    // Observe loading state
+    _controller.isLoading.listen((isLoading) {
+      if (isLoading) {
+        context.loaderOverlay.show();
+      } else {
+        context.loaderOverlay.hide();
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    ever(
-      _controller.isLoading,
-      (_) {
-        if (_controller.isLoading.value) {
-          context.loaderOverlay.show();
-        } else {
-          context.loaderOverlay.hide();
-        }
-      },
-    );
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primary,
@@ -47,13 +45,20 @@ class _MyTicketScreenState extends State<MyTicketScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Obx(() {
-          return ListView.builder(
-            itemCount: _controller.tickets.length,
-            itemBuilder: (context, index) {
-              final ticket = _controller.tickets[index];
-              return TicketCard(ticket: ticket);
-            },
-          );
+          return _controller.tickets.isEmpty
+              ? Center(
+                  child: Text(
+                    'noTicketsAvailable'.tr,
+                    style: const TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: _controller.tickets.length,
+                  itemBuilder: (context, index) {
+                    final ticket = _controller.tickets[index];
+                    return TicketCard(ticket: ticket);
+                  },
+                );
         }),
       ),
     );
@@ -81,17 +86,18 @@ class TicketCard extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Row(
             children: [
-              // QR
+              // QR Code
               Container(
-                color: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.grey[200]
-                    : Colors.transparent,
-                child: Center(
-                  child: QrImageView(
-                    data: ticket.id.toString(),
-                    version: QrVersions.auto,
-                    size: 100,
-                  ),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.grey[200]
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: QrImageView(
+                  data: ticket.id.toString(),
+                  version: QrVersions.auto,
+                  size: 80,
                 ),
               ),
               const SizedBox(width: 16),
@@ -104,32 +110,50 @@ class TicketCard extends StatelessWidget {
                     Text(
                       ticket.movieTitle ?? '',
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       '${'cinemaLocation'.tr}: ${ticket.cinemaLocation}',
-                      style: TextStyle(color: Colors.grey[600]),
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Text(
                       '${'showtime'.tr}: ${ticket.showtime}',
-                      style: TextStyle(color: Colors.grey[600]),
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 14,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '${'seatNumber'.tr}: ${ticket.seatNumbers}',
-                          style: TextStyle(color: Colors.grey[600]),
+                        Expanded(
+                          child: Text(
+                            '${'seatNumber'.tr}: ${ticket.seatNumbers}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         Text(
                           DateFormat('dd/MM/yyyy')
                               .format(ticket.purchaseDate!.toDate()),
-                          style: TextStyle(color: Colors.grey[600]),
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),

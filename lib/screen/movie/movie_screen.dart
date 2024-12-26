@@ -37,7 +37,6 @@ class _MovieScreenState extends State<MovieScreen> {
           {context.loaderOverlay.hide()},
       },
     );
-    // context.loaderOverlay.show();
 
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +45,7 @@ class _MovieScreenState extends State<MovieScreen> {
         title: Text(
           'titleApp'.tr,
           style: const TextStyle(
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -83,8 +82,7 @@ class _MovieScreenState extends State<MovieScreen> {
                 CarouselSlider(
                   options: CarouselOptions(
                     autoPlay: true,
-                    autoPlayAnimationDuration:
-                        const Duration(milliseconds: 5000),
+                    autoPlayInterval: const Duration(seconds: 5),
                     onPageChanged: (index, reason) {
                       _movieController.index.value = index;
                     },
@@ -107,10 +105,10 @@ class _MovieScreenState extends State<MovieScreen> {
                   }).toList(),
                 ),
 
-                // Index Display
+                // Index Display with navigation dots
                 Positioned(
                   top: 16,
-                  right: 60,
+                  right: 16,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 6,
@@ -118,7 +116,7 @@ class _MovieScreenState extends State<MovieScreen> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.grey.withOpacity(0.7),
+                      color: Colors.black.withOpacity(0.5),
                     ),
                     child: Obx(() => Text(
                           '${_movieController.index.value + 1}/${_movieController.imageCarousels.length}',
@@ -130,7 +128,7 @@ class _MovieScreenState extends State<MovieScreen> {
             );
           }),
 
-          // Search Bar
+          // Search Bar with icon and style
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             child: Container(
@@ -148,7 +146,6 @@ class _MovieScreenState extends State<MovieScreen> {
               ),
               child: Row(
                 children: [
-                  // Search Text
                   Expanded(
                     child: TextField(
                       controller: _searchController,
@@ -165,7 +162,6 @@ class _MovieScreenState extends State<MovieScreen> {
                       },
                     ),
                   ),
-                  // Search Icon
                   IconButton(
                     icon: const Icon(
                       Icons.search,
@@ -181,7 +177,7 @@ class _MovieScreenState extends State<MovieScreen> {
             ),
           ),
 
-          // Movie
+          // Movie List Display
           Expanded(
             child: Obx(() {
               return ListView.builder(
@@ -189,10 +185,11 @@ class _MovieScreenState extends State<MovieScreen> {
                 itemBuilder: (context, index) {
                   final movie = _movieController.movieData[index];
                   return GestureDetector(
-                      onTap: () {
-                        Get.toNamed(AppRouterName.detail, arguments: movie);
-                      },
-                      child: MovieCard(movie: movie));
+                    onTap: () {
+                      Get.toNamed(AppRouterName.detail, arguments: movie);
+                    },
+                    child: MovieCard(movie: movie),
+                  );
                 },
               );
             }),
@@ -212,14 +209,18 @@ class MovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      elevation: 4,
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Movie poster
+            // Movie poster with rounded corners
             ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(12),
               child: Image.network(
                 movie.imageUrl ?? '',
                 height: 120,
@@ -244,7 +245,7 @@ class MovieCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  // Rating Stars
+                  // Rating Stars with padding for space
                   Row(
                     children: List.generate(5, (index) {
                       return Icon(
@@ -267,7 +268,7 @@ class MovieCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
 
-                  // Duration Minutes & PremiereDate
+                  // Duration and Premiere Date
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -324,7 +325,7 @@ void showAccountInfo(BuildContext context) {
             Text(
               "accountInfo".tr,
               style: const TextStyle(
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: AppColor.primary,
               ),
@@ -346,8 +347,7 @@ void showAccountInfo(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                   decoration: BoxDecoration(
                     color: AppColor.primary.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),
@@ -363,8 +363,7 @@ void showAccountInfo(BuildContext context) {
                   ),
                 ),
                 Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                  padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
                   decoration: BoxDecoration(
                     color: AppColor.grey.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8),

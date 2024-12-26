@@ -23,12 +23,12 @@ class SeatController extends GetxController {
     '22:00'
   ].obs;
   RxList<String> availableCinemas = [
-    'Cinema Vung Tau',
-    'Cinema Ha Noi',
-    'Cinema Sai Gon',
+    'CGV Aeon Mall Hà Đông',
+    'CGV Vincom Bà Triệu',
+    'Galaxy Nguyễn Du',
     'Cinema Hai Phong',
-    'Cinema Da Nang',
-    'Cinema Da Lat'
+    'CGV Láng Hạ',
+    'BHD Star Cineplex'
   ].obs;
   RxString selectedShowtime = ''.obs;
   RxString selectedCinema = ''.obs;

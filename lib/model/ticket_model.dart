@@ -41,6 +41,8 @@ class TicketModel {
     );
   }
 
+  get createdAt => null;
+
   // Object for saving to Firebase
   Map<String, dynamic> toMap() {
     return {

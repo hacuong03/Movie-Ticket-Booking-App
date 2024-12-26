@@ -26,14 +26,46 @@ Future<String> handleCommonErrorFirebase(
 }
 
 class SeatService {
-  SeatService() {
-    // addSeat(SeatModel("BtfiC7IwNa0FyfnwchkO", "9UZVs6m20chcpCKjeR0M", 2, 2, [
-    //   SeatDetailModel("1", "1", CommonStatus.available),
-    //   SeatDetailModel("1", "2", CommonStatus.available),
-    //   SeatDetailModel("2", "1", CommonStatus.available),
-    //   SeatDetailModel("2", "2", CommonStatus.available),
-    // ]));
-  }
+//   SeatService() {
+//   addSeat(SeatModel("DrtqOa0OAmYKb5ZsdlQw", "9cec0dc0-c22c-11ef-bae4-319a31c0c11a", 6, 6, [
+//     SeatDetailModel("1", "1", CommonStatus.available),
+//     SeatDetailModel("1", "2", CommonStatus.available),
+//     SeatDetailModel("1", "3", CommonStatus.available),
+//     SeatDetailModel("1", "4", CommonStatus.available),
+//     SeatDetailModel("1", "5", CommonStatus.available),
+//     SeatDetailModel("1", "6", CommonStatus.available),
+//     SeatDetailModel("2", "1", CommonStatus.available),
+//     SeatDetailModel("2", "2", CommonStatus.available),
+//     SeatDetailModel("2", "3", CommonStatus.available),
+//     SeatDetailModel("2", "4", CommonStatus.available),
+//     SeatDetailModel("2", "5", CommonStatus.available),
+//     SeatDetailModel("2", "6", CommonStatus.available),
+//     SeatDetailModel("3", "1", CommonStatus.available),
+//     SeatDetailModel("3", "2", CommonStatus.available),
+//     SeatDetailModel("3", "3", CommonStatus.available),
+//     SeatDetailModel("3", "4", CommonStatus.available),
+//     SeatDetailModel("3", "5", CommonStatus.available),
+//     SeatDetailModel("3", "6", CommonStatus.available),
+//     SeatDetailModel("4", "1", CommonStatus.available),
+//     SeatDetailModel("4", "2", CommonStatus.available),
+//     SeatDetailModel("4", "3", CommonStatus.available),
+//     SeatDetailModel("4", "4", CommonStatus.available),
+//     SeatDetailModel("4", "5", CommonStatus.available),
+//     SeatDetailModel("4", "6", CommonStatus.available),
+//     SeatDetailModel("5", "1", CommonStatus.available),
+//     SeatDetailModel("5", "2", CommonStatus.available),
+//     SeatDetailModel("5", "3", CommonStatus.available),
+//     SeatDetailModel("5", "4", CommonStatus.available),
+//     SeatDetailModel("5", "5", CommonStatus.available),
+//     SeatDetailModel("5", "6", CommonStatus.available),
+//     SeatDetailModel("6", "1", CommonStatus.available),
+//     SeatDetailModel("6", "2", CommonStatus.available),
+//     SeatDetailModel("6", "3", CommonStatus.available),
+//     SeatDetailModel("6", "4", CommonStatus.available),
+//     SeatDetailModel("6", "5", CommonStatus.available),
+//     SeatDetailModel("6", "6", CommonStatus.available),
+//   ]));
+// }
   //# Add seat
   Future<String> addSeat(SeatModel seat) async {
     return await handleCommonErrorFirebase(handleFunc: () async {

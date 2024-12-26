@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movie_ticket/model/movie_model.dart';
 import 'package:movie_ticket/model/user_model.dart';
 import 'package:movie_ticket/utils/common_value/common_message.dart';
 import 'package:movie_ticket/utils/firebase/firebase_movie.dart';
-import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_ticket/utils/firebase/firebase_user.dart';
 
 class MovieController extends GetxController {
@@ -13,10 +13,14 @@ class MovieController extends GetxController {
   final UserService _useService = UserService();
   List<MovieModel> movieData = <MovieModel>[].obs;
   RxList<String> imageCarousels =
-      <String>["https://i.ytimg.com/vi/ITlQ0oU7tDA/maxresdefault.jpg"].obs;
+      <String>["https://i.ytimg.com/vi/ITlQ0oU7tDA/maxresdefault.jpg","https://www.teatrozancanaro.it/wp-content/uploads/2024/10/venom.jpg","https://www.themoviedb.org/t/p/w600_and_h900_bestv2/7wDamUqLh6WIZ5XeOaeN58c7Esf.jpg","https://www.themoviedb.org/t/p/w600_and_h900_bestv2/12WjXqJp9LFrXdyScDLkT5BMBcn.jpg","https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sjMN7DRi4sGiledsmllEw5HJjPy.jpg","https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8fAo9UwsmQPTqJyi9vpQZsJ2XOh.jpg"].obs;
   RxBool isLoading = false.obs;
   RxInt index = 1.obs;
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
+
+  get hotMovies => null;
+
+  get nowShowingMovies => null;
 
   @override
   void onInit() {
@@ -39,23 +43,26 @@ class MovieController extends GetxController {
 
   Future<void> getData() async {
     isLoading.value = true;
-
     // addMovies(
-    //   id: "9UZVs6m20chcpCKjeR0M",
-    //   title: "Mắc biếc",
+    //   id: "GMx1kMlfVX4kJscJfIDF",
+    //   title: "Sonic 3",
     //   description:
-    //       "ĐaĐi qua những đau khổ và phản bội, mối tình đơn phương của Ngạn dành cho cô bạn thân thời thơ ấu Hà Lan kéo dài cả một thế hệ trong bộ phim siêu lãng mạn này.",
-    //   imageUrl: "https://i.ytimg.com/vi/ITlQ0oU7tDA/maxresdefault.jpg",
+    //       "Sau khi Ông già Noel bị bắt cóc, Trưởng An ninh Bắc Cực (Dwayne Johnson) phải hợp tác với thợ săn tiền thưởng khét tiếng nhất thế giới (Chris Evans) trong một nhiệm vụ kịch tính xuyên lục địa để giải cứu Giáng Sinh.",
+    //   imageUrl:
+    //       "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zRgxYzRu4s8smKMskdfMA2hOzyN.jpg",
     //   premiereDate: Timestamp(100, 20),
-    //   genre: "tình cảm",
-    //   country: "Viet Nam",
+    //   genre: "Hành động, Kịch tính",
+    //   country: "Mỹ",
     //   trailerUrl:
-    //       "https://i.ytimg.com/vi/ITlQ0oU7tDA/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBmfGxTuPODmT4LVwqSha__BY91PQ",
-    //   rating: 4.7,
-    //   imageGallery: ['https://i.ytimg.com/vi/ITlQ0oU7tDA/maxresdefault.jpg'],
-    //   durationMinutes: 120,
-    //   price: 75000.0,
+    //       "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zRgxYzRu4s8smKMskdfMA2hOzyN.jpg",
+    //   rating: 4.2,
+    //   imageGallery: [
+    //     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zRgxYzRu4s8smKMskdfMA2hOzyN.jpg'
+    //   ],
+    //   durationMinutes: 100,
+    //   price: 66000.0,
     // );
+
     final futures = [
       getImageCarousels(),
       getAndFilterMovies(""),
@@ -145,4 +152,6 @@ class MovieController extends GetxController {
     }
     isLoading.value = false;
   }
+
+  void signOut() {}
 }

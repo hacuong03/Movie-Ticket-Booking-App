@@ -5,6 +5,8 @@ import 'package:movie_ticket/controller/home_controller.dart';
 import 'package:movie_ticket/screen/movie/movie_screen.dart';
 import 'package:movie_ticket/screen/my_ticket/my_ticket_screen.dart';
 import 'package:movie_ticket/screen/setting/setting_screen.dart';
+import 'package:movie_ticket/screen/location/location_screen.dart';
+import 'package:movie_ticket/screen/movie/new_home_screen.dart'; // Import page mới
 
 class HomeScreen extends StatelessWidget {
   final HomeController _homeController = Get.put(HomeController());
@@ -19,9 +21,13 @@ class HomeScreen extends StatelessWidget {
           case 0:
             return const MovieScreen();
           case 1:
-            return const MyTicketScreen();
+            return const NewHomeScreen();
           case 2:
+            return const MyTicketScreen();
+          case 3:
             return SettingScreen();
+          case 4: // Case cho page mới
+            return const LocationPage();
           default:
             return const MovieScreen();
         }
@@ -34,12 +40,20 @@ class HomeScreen extends StatelessWidget {
               label: 'home'.tr,
             ),
             BottomNavigationBarItem(
+              icon: const Icon(Icons.location_on),
+              label: 'Movies'.tr,
+            ),
+            BottomNavigationBarItem(
               icon: const Icon(Icons.qr_code),
               label: 'myTicket'.tr,
             ),
             BottomNavigationBarItem(
               icon: const Icon(Icons.settings),
               label: 'setting'.tr,
+            ),
+            BottomNavigationBarItem( // Thêm icon cho page mới
+              icon: const Icon(Icons.movie),
+              label: 'Location'.tr,
             ),
           ],
           currentIndex: _homeController.selectedIndex.value,
@@ -48,6 +62,7 @@ class HomeScreen extends StatelessWidget {
           onTap: (index) {
             _homeController.changeIndex(index);
           },
+          type: BottomNavigationBarType.fixed,
         );
       }),
     );
